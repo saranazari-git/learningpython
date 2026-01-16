@@ -1,3 +1,3 @@
 print("Hello, World!")
 
-print
+print("the error is corrected")
