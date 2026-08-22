@@ -1,0 +1,57 @@
+"""
+==================================================
+File: error_handling.py
+Description: Learn how to handle exceptions and errors gracefully in Python
+==================================================
+"""
+
+# ==================================================
+# 1. BASIC TRY-EXCEPT BLOCK
+# ==================================================
+# When code inside 'try' fails, Python jumps to 'except' instead of crashing.
+
+print("--- 1. Basic Exception Handling ---")
+try:
+    # This will cause a ZeroDivisionError
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Error: You cannot divide a number by zero!")
+
+
+# ==================================================
+# 2. HANDLING MULTIPLE TYPES OF ERRORS
+# ==================================================
+
+print("\n--- 2. Handling Multiple Errors ---")
+try:
+    # User inputs string instead of number
+    user_input = "abc"
+    number = int(user_input)
+except ValueError:
+    print("Error: Please enter a valid integer number.")
+except TypeError:
+    print("Error: Type mismatch occurred.")
+
+
+# ==================================================
+# 3. TRY - EXCEPT - ELSE - FINALLY
+# ==================================================
+# else: runs if NO exception occurs.
+# finally: ALWAYS runs, whether there was an error or not (good for cleanup).
+
+print("\n--- 3. Else and Finally Blocks ---")
+def withdraw_money(balance, amount):
+    try:
+        if amount > balance:
+            raise ValueError("Insufficient funds for this withdrawal.")
+        new_balance = balance - amount
+    except ValueError as e:
+        print(f"Caught an exception: {e}")
+    else:
+        print(f"Transaction successful! Remaining balance: ${new_balance:.2f}")
+    finally:
+        print("Transaction process completed.\n")
+
+# Testing the function
+withdraw_money(100.0, 40.0)  # Should succeed
+withdraw_money(100.0, 150.0) # Should raise ValueError
