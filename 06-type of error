@@ -1,0 +1,80 @@
+"""
+==================================================
+File: error_types.py
+Description: Comprehensive guide and examples of Syntax Errors and Built-in Exceptions in Python
+==================================================
+"""
+
+# ==================================================
+# PART 1: SYNTAX ERRORS (Compile-time Errors)
+# ==================================================
+# Syntax errors happen before the code runs due to incorrect grammar or spelling.
+# NOTE: If a file has a SyntaxError, Python won't run it at all. 
+# Therefore, the example below is commented out, but it shows a typical SyntaxError:
+
+# if True
+#     print("Missing colon causes a SyntaxError!")
+
+
+# ==================================================
+# PART 2: EXCEPTIONS / RUNTIME ERRORS
+# ==================================================
+# These happen while the program is running. We can catch and handle them using try-except.
+
+print("--- 1. ValueError ---")
+try:
+    # Trying to convert invalid text into an integer
+    number = int("hello_python")
+except ValueError as e:
+    print(f"Caught ValueError: {e}")
+
+
+print("\n--- 2. TypeError ---")
+try:
+    # Trying to add a string and an integer together
+    result = "Age: " + 25
+except TypeError as e:
+    print(f"Caught TypeError: {e}")
+
+
+print("\n--- 3. ZeroDivisionError ---")
+try:
+    # Trying to divide by zero
+    calculation = 100 / 0
+except ZeroDivisionError as e:
+    print(f"Caught ZeroDivisionError: {e}")
+
+
+print("\n--- 4. IndexError ---")
+try:
+    # Trying to access an index out of range in a list
+    languages = ["Python", "Java", "C++"]
+    print(languages[10])
+except IndexError as e:
+    print(f"Caught IndexError: {e}")
+
+
+print("\n--- 5. KeyError ---")
+try:
+    # Trying to look up a non-existent key in a dictionary
+    student = {"name": "Sara", "major": "Computer Engineering"}
+    print(student["gpa"])
+except KeyError as e:
+    print(f"Caught KeyError (Key not found): {e}")
+
+
+print("\n--- 6. NameError ---")
+try:
+    # Using a variable that has not been defined yet
+    print(non_existent_variable)
+except NameError as e:
+    print(f"Caught NameError: {e}")
+
+
+print("\n--- 7. FileNotFoundError ---")
+try:
+    # Trying to open a file that does not exist on disk
+    with open("missing_file.txt", "r") as file:
+        content = file.read()
+except FileNotFoundError as e:
+    print(f"Caught FileNotFoundError: {e}")
