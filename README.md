@@ -1,7 +1,7 @@
 # learningpython
 # 🚀 Python Learning Journey
 
-Hello! 👋 This repository is a collection of my notes, code examples, and practice projects from my journey of learning **Python**. The goal of this repo is to document my progress and share useful code snippets with others.
+Hello! 👋 This repository is a collection of my notes, code examples, and practice projects from my journey of learning **Python**. The goal of this repo is to document useful code snippets with others.
 
 ---
 
