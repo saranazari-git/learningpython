@@ -1,0 +1,81 @@
+"""
+==================================================
+File: classes.py
+Description: Learn the basics of Object-Oriented Programming (OOP), Classes, and Objects in Python
+==================================================
+"""
+
+# ==================================================
+# 1. DEFINING A CLASS AND CREATING AN OBJECT
+# ==================================================
+# A class is like a blueprint for creating objects.
+class Dog:
+    # The constructor method (__init__) initializes the object's attributes (properties)
+    def __init__(self, name, breed):
+        self.name = name       # Instance variable
+        self.breed = breed     # Instance variable
+
+    # A method (a function inside a class)
+    def bark(self):
+        return f"{self.name} says Woof!"
+
+print("--- 1. Basic Class and Objects ---")
+# Creating objects (instances) of the Dog class
+dog1 = Dog("Buddy", "Golden Retriever")
+dog2 = Dog("Max", "German Shepherd")
+
+print(f"{dog1.name} is a {dog1.breed}.")
+print(dog1.bark())
+
+print(f"{dog2.name} is a {dog2.breed}.")
+print(dog2.bark())
+
+
+# ==================================================
+# 2. CLASS WITH METHODS AND STATE MODIFICATION
+# ==================================================
+class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            return f"Deposited ${amount}. New balance: ${self.balance}"
+        return "Invalid deposit amount."
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            return f"Withdrew ${amount}. New balance: ${self.balance}"
+        return "Insufficient funds or invalid amount."
+
+print("\n--- 2. Methods and Modifying State ---")
+my_account = BankAccount("Sara", 100)
+print(my_account.deposit(50))
+print(my_account.withdraw(30))
+
+
+# ==================================================
+# 3. INHERITANCE (Worshipping Code Reusability)
+# ==================================================
+# Inheritance allows us to define a class that inherits all the methods and properties from another class.
+
+# Parent class (Base class)
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def eat(self):
+        return f"{self.name} is eating."
+
+# Child class (Derived class) inheriting from Animal
+class Cat(Animal):
+    def meow(self):
+        return f"{self.name} says Meow!"
+
+print("\n--- 3. Inheritance ---")
+my_cat = Cat("Whiskers")
+print(my_cat.eat())   # Inherited from Animal class
+print(my_cat.meow())  # Defined in Cat class
