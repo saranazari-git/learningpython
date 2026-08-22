@@ -1,0 +1,61 @@
+"""
+==================================================
+File: file_handling.py
+Description: Learn how to create, write, read, and append files using Python
+==================================================
+"""
+
+import os
+
+# ==================================================
+# 1. WRITING TO A FILE ('w' mode)
+# ==================================================
+# 'w' mode creates a new file or overwrites an existing file completely.
+
+print("--- 1. Writing to a File ---")
+file_name = "sample_data.txt"
+
+with open(file_name, "w", encoding="utf-8") as file:
+    file.write("Hello, this is line 1: Python File Handling.\n")
+    file.write("Welcome to Toronto!\n")
+print(f"File '{file_name}' created and written successfully.")
+
+
+# ==================================================
+# 2. READING FROM A FILE ('r' mode)
+# ==================================================
+# 'r' mode opens a file for reading. (Throws FileNotFoundError if the file doesn't exist).
+
+print("\n--- 2. Reading from a File ---")
+try:
+    with open(file_name, "r", encoding="utf-8") as file:
+        content = file.read()
+        print("File Content:")
+        print(content)
+except FileNotFoundError:
+    print("Error: The file was not found.")
+
+
+# ==================================================
+# 3. APPENDING TO A FILE ('a' mode)
+# ==================================================
+# 'a' mode adds new content to the end of the file without deleting existing text.
+
+print("\n--- 3. Appending to a File ---")
+with open(file_name, "a", encoding="utf-8") as file:
+    file.write("Appending this new line to the file.\n")
+
+# Let's read it line by line to verify
+print("Reading file line by line after appending:")
+with open(file_name, "r", encoding="utf-8") as file:
+    for line_number, line in enumerate(file, start=1):
+        print(f"Line {line_number}: {line.strip()}")
+
+
+# ==================================================
+# 4. CLEANUP (Optional)
+# ==================================================
+# Removing the sample file so your workspace stays clean (uncomment if you want to delete it)
+# if os.path.exists(file_name):
+#     os.remove(file_name)
+#     print(f"\nFile '{file_name}' deleted successfully.")
