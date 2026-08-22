@@ -1,0 +1,103 @@
+"""
+==================================================
+File: healthcare_classes.py
+Description: Demonstrating Object-Oriented Programming (OOP) and Different Types of Inheritance in a Healthcare Scenario
+==================================================
+"""
+
+# ==================================================
+# 1. SINGLE INHERITANCE
+# ==================================================
+# Parent Class (Base class)
+class Person:
+    def __init__(self, name, age, national_id):
+        self.name = name
+        self.age = age
+        self.national_id = national_id
+
+    def get_details(self):
+        return f"Name: {self.name}, Age: {self.age}, ID: {self.national_id}"
+
+# Child Class inheriting from Person
+class Patient(Person):
+    def __init__(self, name, age, national_id, diagnosis):
+        super().__init__(name, age, national_id)  # Inheriting attributes from Person
+        self.diagnosis = diagnosis
+
+    def update_diagnosis(self, new_diagnosis):
+        self.diagnosis = new_diagnosis
+        return f"Diagnosis updated to: {self.diagnosis}"
+
+print("--- 1. Single Inheritance ---")
+patient1 = Patient("John Doe", 45, "123456789", "Hypertension")
+print(patient1.get_details())  # Method from Person class
+print(f"Current Diagnosis: {patient1.diagnosis}")
+
+
+# ==================================================
+# 2. MULTI-LEVEL INHERITANCE
+# ==================================================
+# A class inherits from a child class, creating a chain of inheritance.
+
+class Staff(Person):
+    def __init__(self, name, age, national_id, employee_id, department):
+        super().__init__(name, age, national_id)
+        self.employee_id = employee_id
+        self.department = department
+
+    def clock_in(self):
+        return f"Staff member {self.name} has clocked in."
+
+# Doctor inherits from Staff, which inherits from Person
+class Doctor(Staff):
+    def __init__(self, name, age, national_id, employee_id, department, specialization):
+        super().__init__(name, age, national_id, employee_id, department)
+        self.specialization = specialization
+
+    def prescribe_medication(self, medicine_name):
+        return f"Dr. {self.name} ({self.specialization}) prescribed {medicine_name}."
+
+print("\n--- 2. Multi-Level Inheritance ---")
+doctor1 = Doctor("Dr. Smith", 50, "987654321", "EMP-001", "Cardiology", "Surgeon")
+print(doctor1.get_details())           # Inherited from Person
+print(doctor1.clock_in())              # Inherited from Staff
+print(doctor1.prescribe_medication("Aspirin"))  # Defined in Doctor
+
+
+# ==================================================
+# 3. MULTIPLE INHERITANCE
+# ==================================================
+# A class can inherit from more than one parent class.
+
+class Researcher:
+    def __init__(self, research_field):
+        self.research_field = research_field
+
+    def publish_paper(self, title):
+        return f"Published research paper in {self.research_field}: '{title}'"
+
+# MedicalResearcher inherits from both Doctor and Researcher
+class MedicalResearcher(Doctor, Researcher):
+    def __init__(self, name, age, national_id, employee_id, department, specialization, research_field):
+        # Initializing both parent classes
+        Doctor.__init__(self, name, age, national_id, employee_id, department, specialization)
+        Researcher.__init__(self, research_field)
+
+    def conduct_clinical_trial(self):
+        return f"Dr. {self.name} is leading a clinical trial in {self.research_field}."
+
+print("\n--- 3. Multiple Inheritance ---")
+researcher_doc = MedicalResearcher(
+    name="Dr. House", 
+    age=52, 
+    national_id="456789123", 
+    employee_id="EMP-042", 
+    department="Neurology", 
+    specialization="Diagnostic Medicine", 
+    research_field="Continuum Robots in Heart Surgery"
+)
+
+print(researcher_doc.get_details())                  # From Person -> Doctor
+print(researcher_doc.prescribe_medication("MRI Scan")) # From Doctor
+print(researcher_doc.publish_paper("AI in Cardiac Surgery")) # From Researcher
+print(researcher_doc.conduct_clinical_trial())       # From MedicalResearcher
